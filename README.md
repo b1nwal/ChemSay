@@ -1,2 +1,2 @@
 # ChemSay
-Spells words using element on the periodic table.
+Spells words using elements on the periodic table.
