@@ -1,9 +1,7 @@
 import re
+from tkinter import *
 word = "amongus"
-ss = []
-l = []
-fin = []
-d = {i:[] for i in range(len(word))}
+# TODO convert to object oriented system, as opposed to diction
 class pt:
   hydrogen = {'name': 'Hydrogen', 'symbol': 'H', 'mass': '1.00794', 'number': 1}
   helium = {'name': 'Helium', 'symbol': 'He', 'mass': '4.002602', 'number': 2}
@@ -123,33 +121,95 @@ class pt:
   livermorium = {'name': 'Livermorium', 'symbol': 'Lv', 'mass': '293', 'number': 116}
   tennessine = {'name': 'Tennessine', 'symbol': 'Ts', 'mass': '294', 'number': 117}
   oganesson = {'name': 'Oganesson', 'symbol': 'Og', 'mass': '294', 'number': 118}
-  sym = {'h': hydrogen, 'he': helium, 'li': lithium, 'be': beryllium, 'b': boron, 'c': carbon, 'n': nitrogen, 'o': oxygen, 'f': fluorine, 'ne': neon, 'na': sodium, 'mg': magnesium, 'al': aluminum, 'si': silicon, 'p': phosphorus, 's': sulfur, 'cl': chlorine, 'ar': argon, 'k': potassium, 'ca': calcium, 'sc': scandium, 'ti': titanium, 'v': vanadium, 'cr': chromium, 'mn': manganese, 'fe': iron, 'co': cobalt, 'ni': nickel, 'cu': copper, 'zn': zinc, 'ga': gallium, 'ge': germanium, 'as': arsenic, 'se': selenium, 'br': bromine, 'kr': krypton, 'rb': rubidium, 'sr': strontium, 'y': yttrium, 'zr': zirconium, 'nb': niobium, 'mo': molybdenum, 'tc': technetium, 'ru': ruthenium, 'rh': rhodium, 'pd': palladium, 'ag': silver, 'cd': cadmium, 'in': indium, 'sn': tin, 'sb': antimony, 'te': tellurium, 'i': iodine, 'xe': xenon, 'cs': cesium, 'ba': barium, 'la': lanthanum, 'ce': cerium, 'pr': praseodymium, 'nd': neodymium, 'pm': promethium, 'sm': samarium, 'eu': europium, 'gd': gadolinium, 'tb': terbium, 'dy': dysprosium, 'ho': holmium, 'er': erbium, 'tm': thulium, 'yb': ytterbium, 'lu': lutetium, 'hf': hafnium, 'ta': tantalum, 'w': tungsten, 're': rhenium, 'os': osmium, 'ir': iridium, 'pt': platinum, 'au': gold, 'hg': mercury, 'tl': thallium, 'pb': lead, 'bi': bismuth, 'po': polonium, 'at': astatine, 'rn': radon, 'fr': francium, 'ra': radium, 'ac': actinium, 'th': thorium, 'pa': protactinium, 'u': uranium, 'np': neptunium, 'pu': plutonium, 'am': americium, 'cm': curium, 'bk': berkelium, 'cf': californium, 'es': einsteinium, 'fm': fermium, 'md': mendelevium, 'no': nobelium, 'lr': lawrencium, 'rf': rutherfordium, 'db': dubnium, 'sg': seaborgium, 'bh': bohrium, 'hs': hassium, 'mt': meitnerium, 'ds': darmstadtium, 'rg': roentgenium, 'cn': copernicium, 'nh': nihonium, 'fl': flerovium, 'mc': moscovium, 'lv': livermorium, 'ts': tennessine, 'og': oganesson, 'a':'a','d':'d','e':'e','g':'g','j':'j','l':'l','m':'m','q':'q','r':'r','t':'t','x':'x','z':'z'}
-for i in pt.sym:
-  g = [i.start() for i in re.finditer(i, word)]
-  for x in g:
-    d[x].append(i)
-for i in d[0]:
-  l.append([i])
-for i in range(len(word)):
-  n = []
-  for i in l:
-    c = sum(map(len,i))
-    if c >= len(word):
-      n.append(i)
-      continue
-    for x in d[c]:
-      n.append(i + [x])
-  l = n
-for i in l:
-  s = 0
-  for x in i:
-    if type(pt.sym[x]) == type({}):
-      s += 1
-    else:
-      s += 2
-  ss.append(s)
-g = l[ss.index(min(ss))]
-for i in g:
-  fin.append(pt.sym[i])
-# Now we are working with fin, which is a list of dictionaries containing the definitions of the elements used to create our input word
-print(fin)
+  sym = {'h': hydrogen, 'he': helium, 'li': lithium, 'be': beryllium, 'b': boron, 'c': carbon, 'n': nitrogen, 'o': oxygen, 'f': fluorine, 'ne': neon, 'na': sodium, 'mg': magnesium, 'al': aluminum, 'si': silicon, 'p': phosphorus, 's': sulfur, 'cl': chlorine, 'ar': argon, 'k': potassium, 'ca': calcium, 'sc': scandium, 'ti': titanium, 'v': vanadium, 'cr': chromium, 'mn': manganese, 'fe': iron, 'co': cobalt, 'ni': nickel, 'cu': copper, 'zn': zinc, 'ga': gallium, 'ge': germanium, 'as': arsenic, 'se': selenium, 'br': bromine, 'kr': krypton, 'rb': rubidium, 'sr': strontium, 'y': yttrium, 'zr': zirconium, 'nb': niobium, 'mo': molybdenum, 'tc': technetium, 'ru': ruthenium, 'rh': rhodium, 'pd': palladium, 'ag': silver, 'cd': cadmium, 'in': indium, 'sn': tin, 'sb': antimony, 'te': tellurium, 'i': iodine, 'xe': xenon, 'cs': cesium, 'ba': barium, 'la': lanthanum, 'ce': cerium, 'pr': praseodymium, 'nd': neodymium, 'pm': promethium, 'sm': samarium, 'eu': europium, 'gd': gadolinium, 'tb': terbium, 'dy': dysprosium, 'ho': holmium, 'er': erbium, 'tm': thulium, 'yb': ytterbium, 'lu': lutetium, 'hf': hafnium, 'ta': tantalum, 'w': tungsten, 're': rhenium, 'os': osmium, 'ir': iridium, 'pt': platinum, 'au': gold, 'hg': mercury, 'tl': thallium, 'pb': lead, 'bi': bismuth, 'po': polonium, 'at': astatine, 'rn': radon, 'fr': francium, 'ra': radium, 'ac': actinium, 'th': thorium, 'pa': protactinium, 'u': uranium, 'np': neptunium, 'pu': plutonium, 'am': americium, 'cm': curium, 'bk': berkelium, 'cf': californium, 'es': einsteinium, 'fm': fermium, 'md': mendelevium, 'no': nobelium, 'lr': lawrencium, 'rf': rutherfordium, 'db': dubnium, 'sg': seaborgium, 'bh': bohrium, 'hs': hassium, 'mt': meitnerium, 'ds': darmstadtium, 'rg': roentgenium, 'cn': copernicium, 'nh': nihonium, 'fl': flerovium, 'mc': moscovium, 'lv': livermorium, 'ts': tennessine, 'og': oganesson, 'a':'a','d':'d','e':'e','g':'g','j':'j','l':'l','m':'m','q':'q','r':'r','t':'t','x':'x','z':'z',' ':' '}
+def chem_say(word):
+    ss = []
+    l = []
+    fin = []
+    d = {i:[] for i in range(len(word))}
+    for i in pt.sym:
+      g = [i.start() for i in re.finditer(i, word)]
+      for x in g:
+        d[x].append(i)
+    for i in d[0]:
+      l.append([i])
+    for i in range(len(word)):
+      n = []
+      for i in l:
+        c = sum(map(len,i))
+        if c >= len(word):
+          n.append(i)
+          continue
+        for x in d[c]:
+          n.append(i + [x])
+      l = n
+    for i in l:
+      s = 0
+      for x in i:
+        if type(pt.sym[x]) == type({}):
+          s += 1
+        else:
+          s += 2
+      ss.append(s)
+    g = l[ss.index(min(ss))]
+    for i in g:
+      fin.append(pt.sym[i])
+    return fin
+win = Tk()
+win.geometry('1080x720')
+cv = Canvas(win,width=1080,height=720,bg="#161925",highlightthickness=0)
+cv.pack()
+class element():
+    def __init__(self,xn,on,nu,sy,na,ma):
+        self.xn = xn
+        self.on = on
+        self.nu = nu
+        self.sy = sy
+        self.na = na
+        self.ma = ma
+
+def draw_element(x,y,e):
+    if type(e) == type(''):
+        xn = cv.create_rectangle(0,0,0,0,width=0)
+        on = cv.create_rectangle(0,0,0,0,width=0)
+        nu = cv.create_rectangle(0,0,0,0,width=0)
+        sy = cv.create_text(x+50,y+50,fill="#CBF7ED",font="Times 40",text=e)
+        na = cv.create_rectangle(0,0,0,0,width=0)
+        ma = cv.create_rectangle(0,0,0,0,width=0)
+        elem = element(xn,on,nu,sy,na,ma)
+        return elem
+    number  = e['number']
+    symbol  = e['symbol']
+    name    = e['name']
+    mass    = float(e['mass'])
+    xn = cv.create_rectangle(x+6, y+6, x+106, y+106,outline="#23395B",width=8)
+    on = cv.create_rectangle(x, y, x+100, y+100,outline="#406E8E",width=8)
+    nu = cv.create_text(x+20,y+20,fill="#CBF7ED",font="15",text=number)
+    sy = cv.create_text(x+50,y+50,fill="#CBF7ED",font="Times 40",text=symbol)
+    na = cv.create_text(x+50,y+80,fill="#CBF7ED",font="Times 10",text=name)
+    ma = cv.create_text(x+80,y+20,fill="#CBF7ED",font="15",text=round(mass))
+    elem = element(xn,on,nu,sy,na,ma)
+    return elem
+# draw_element(100,100,{'name': 'Sulfur', 'symbol': 'S', 'mass': '32.065', 'number': 16})
+# will draw Sulfur at (100,100)
+e = []
+def get_input(f):
+    for i in e:
+        cv.delete(i.xn)
+        cv.delete(i.on)
+        cv.delete(i.nu)
+        cv.delete(i.sy)
+        cv.delete(i.na)
+        cv.delete(i.ma)
+    l = chem_say(wbox.get().lower())
+    wbox.delete(0,END)
+    tl = (len(l) * 100) / 2
+    x,y=440  - tl,100
+    for i in l:
+        x+=100
+        e.append(draw_element(x,y,i))
+wbox = Entry(win,bg="#23395B",bd=0,font="Consolas 20",fg="#8EA8C3",insertbackground="#8EA8C3")
+cv.create_window(540,400,window=wbox,height=120,width=690)
+cv.create_rectangle(190,335,890,465,outline="#23395B",width=10)
+wbox.bind('<Return>',get_input)
+win.mainloop()
