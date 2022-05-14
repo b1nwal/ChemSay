@@ -2,7 +2,6 @@ import re
 from tkinter import *
 import os
 e = []
-# TODO convert to object oriented system, as opposed to diction
 class pt:
   hydrogen = {'name': 'Hydrogen', 'symbol': 'H', 'mass': '1.00794', 'number': 1}
   helium = {'name': 'Helium', 'symbol': 'He', 'mass': '4.002602', 'number': 2}
@@ -182,7 +181,6 @@ class element():
         self.sy = sy
         self.na = na
         self.ma = ma
-
 def draw_element(x,y,e):
     if type(e) == type(''):
         xn = cv.create_rectangle(0,0,0,0,width=0)
@@ -205,9 +203,6 @@ def draw_element(x,y,e):
     ma = cv.create_text(x+80,y+20,fill="#CBF7ED",font="15",text=round(mass))
     elem = element(xn,on,nu,sy,na,ma)
     return elem
-# draw_element(100,100,{'name': 'Sulfur', 'symbol': 'S', 'mass': '32.065', 'number': 16})
-# will draw Sulfur at (100,100)
-
 def get_input(f):
     for i in e:
         cv.delete(i.xn)
