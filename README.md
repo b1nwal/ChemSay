@@ -7,7 +7,7 @@ Reilley Pfrimmer (@b1nwal)
 ## How I Built It
 I was inspired by https://www.chemspeller.com, so I decided to build my own, local version. Here's how it works:
 
-The program uses regex to search through the word for element symbols, and compiles all into a dictionary, the key for each being the starting index for that element in the word. For example, `her` -> `0:['h','he'], 1:['e','er'], 3:['r']}`. Now, finding the best arrangement is the hard part. You cannot use a once-over-pick-longest-symbol, or else `her` -> `[He] + r`, while the ideal arrangement would include the most letters being part of element symbols as possible, meaning `her` -> `[H] + [Er]`. Obviously, you also cannot choose the smallest first either. The solution? Compile all possible arrangements and choose the best.
+The program uses regex to search through the word for element symbols, and compiles all into a dictionary, the key for each being the starting index for that element in the word. For example, `her` -> `0:['h','he'], 1:['e','er'], 2:['r']}`. Now, finding the best arrangement is the hard part. You cannot use a once-over-pick-longest-symbol, or else `her` -> `[He] + r`, while the ideal arrangement would include the most letters being part of element symbols as possible, meaning `her` -> `[H] + [Er]`. Obviously, you also cannot choose the smallest first either. The solution? Compile all possible arrangements and choose the best.
 To do this, I used the following strategy:
 ```
  for every element in current l
@@ -30,4 +30,11 @@ Next evaluate all combinations with the following system:
 +2 PT PER NON-ELEMENT
 ```
 Then, choose the combo with lowest score, meaning it will be the shortest and include the most elements (as opposed to non-elements) as possible.
-The rest is all up to displaying it (Done with tkinter).
+The rest is all up to displaying it.
+
+## Resources used:
+python: (language)
+tkinter: (for window)
+pyinstaller: (for compiling to executable)
+atom: (text editor)
+git (github, git bash): (version control)
