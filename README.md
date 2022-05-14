@@ -33,8 +33,12 @@ Then, choose the combo with lowest score, meaning it will be the shortest and in
 The rest is all up to displaying it.
 
 ## Resources used:
-python: (language)
-tkinter: (for window)
-pyinstaller: (for compiling to executable)
-atom: (text editor)
-git (github, git bash): (version control)
+python: (language)\n
+tkinter: (for window)\n
+pyinstaller: (for compiling to executable)\n
+atom: (text editor)\n
+git (github, git bash): (version control)\n
+
+## TODOs:
+Fix spacing issues (standalone letters look strange, very easy to make word go offscreen)\n
+Potentially switch to object-based element info, as opposed to the current dict based approach.
