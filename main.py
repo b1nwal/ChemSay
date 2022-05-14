@@ -1,6 +1,7 @@
 import re
 from tkinter import *
-word = "amongus"
+import os
+e = []
 # TODO convert to object oriented system, as opposed to diction
 class pt:
   hydrogen = {'name': 'Hydrogen', 'symbol': 'H', 'mass': '1.00794', 'number': 1}
@@ -151,7 +152,18 @@ def chem_say(word):
         else:
           s += 2
       ss.append(s)
-    g = l[ss.index(min(ss))]
+    try:
+        g = l[ss.index(min(ss))]
+    except ValueError:
+        xn = cv.create_rectangle(0,0,0,0,width=0)
+        on = cv.create_rectangle(0,0,0,0,width=0)
+        nu = cv.create_rectangle(0,0,0,0,width=0)
+        sy = cv.create_text(540,200,fill="#CBF7ED",font="Times 40",text="No results.")
+        na = cv.create_rectangle(0,0,0,0,width=0)
+        ma = cv.create_rectangle(0,0,0,0,width=0)
+        elem = element(xn,on,nu,sy,na,ma)
+        e.append(elem)
+        return []
     for i in g:
       fin.append(pt.sym[i])
     return fin
@@ -159,6 +171,9 @@ win = Tk()
 win.geometry('1080x720')
 cv = Canvas(win,width=1080,height=720,bg="#161925",highlightthickness=0)
 cv.pack()
+cv.create_text(540,500,fill="#CBF7ED",font="Times 15",text="*All Masses Are Rounded")
+logoimg = PhotoImage(file="assets/logo.gif")
+cv.create_image(980,670,image=logoimg)
 class element():
     def __init__(self,xn,on,nu,sy,na,ma):
         self.xn = xn
@@ -192,7 +207,7 @@ def draw_element(x,y,e):
     return elem
 # draw_element(100,100,{'name': 'Sulfur', 'symbol': 'S', 'mass': '32.065', 'number': 16})
 # will draw Sulfur at (100,100)
-e = []
+
 def get_input(f):
     for i in e:
         cv.delete(i.xn)
@@ -203,13 +218,23 @@ def get_input(f):
         cv.delete(i.ma)
     l = chem_say(wbox.get().lower())
     wbox.delete(0,END)
-    tl = (len(l) * 100) / 2
-    x,y=440  - tl,100
+    tl = 0
     for i in l:
-        x+=100
+        if i == ' ':
+            tl += 60
+        else:
+            tl += 100
+    x,y=440 - tl/2,100
+    for i in l:
+        if i == ' ':
+            x+=60
+        else:
+            x+=100
         e.append(draw_element(x,y,i))
-wbox = Entry(win,bg="#23395B",bd=0,font="Consolas 20",fg="#8EA8C3",insertbackground="#8EA8C3")
+wbox = Entry(win,bg="#23395B",bd=0,font="Consolas 40",fg="#8EA8C3",insertbackground="#8EA8C3")
 cv.create_window(540,400,window=wbox,height=120,width=690)
 cv.create_rectangle(190,335,890,465,outline="#23395B",width=10)
+cv.create_rectangle(180,325,900,475,outline="#406E8E",width=10)
 wbox.bind('<Return>',get_input)
+win.title('ChemSay')
 win.mainloop()
